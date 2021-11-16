@@ -6,7 +6,7 @@ import java.time.ZonedDateTime;
 public class Account implements Serializable {
     private long id;
     private int money;
-    private ZonedDateTime creationTime;
+//    private ZonedDateTime creationTime;
 
     public Account() {}
 
@@ -26,20 +26,20 @@ public class Account implements Serializable {
         this.money = money;
     }
 
-    public ZonedDateTime getCreationTime() {
-        return creationTime;
-    }
-
-    public void setCreationTime(ZonedDateTime creationTime) {
-        this.creationTime = creationTime;
-    }
+//    public ZonedDateTime getCreationTime() {
+//        return creationTime;
+//    }
+//
+//    public void setCreationTime(ZonedDateTime creationTime) {
+//        this.creationTime = creationTime;
+//    }
 
     @Override
     public String toString() {
         return "Account{" +
                 "id=" + id +
                 ", money=" + money +
-                ", creationTime=" + creationTime +
+//                ", creationTime=" + creationTime +
                 '}';
     }
 }
