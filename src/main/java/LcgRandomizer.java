@@ -14,12 +14,8 @@ public class LcgRandomizer {
         this.lastNumber = lastNumber;
     }
 
-    public long getNumber() {
-        lastNumber = lastNumber * a;
-        lastNumber = lastNumber > 4294967295L ? lastNumber - 4294967296L : lastNumber;
-        lastNumber = lastNumber + c;
-        lastNumber = lastNumber > 4294967295L ? lastNumber - 4294967296L : lastNumber;
-        lastNumber = lastNumber % m;
-        return lastNumber;
+    public int getNumber() {
+        lastNumber = (lastNumber * a + c) % m;
+        return (int) lastNumber;
     }
 }

@@ -13,25 +13,23 @@ public class Hack {
 
         long playerId = getFreeAccountId();
         int lastAmountOfMoney= 0;
-        long[] winNumbers = new long[6];
+        long[] winNumbers = new long[3];
 
         for (int i = 0; i < winNumbers.length; i++) {
             Result result = apiEndpoints.play(PlayMode.Lcg, playerId, 1, (int)(Math.random() * 20)).body().as(Result.class);
             winNumbers[i] = result.getRealNumber();
             lastAmountOfMoney = result.getAccount().getMoney();
-            System.out.println("Money: " + lastAmountOfMoney);
         }
         System.out.println("Money after collect data: " + lastAmountOfMoney);
 
         LcgConstants constants = LcgRandomizerHack.calculateConstants(winNumbers);
-
         LcgRandomizer randomizer = new LcgRandomizer(constants, winNumbers[winNumbers.length - 1]);
 
         int currentBet = 1;
         while (true) {
             Result result = apiEndpoints.play(PlayMode.Lcg, playerId, currentBet, randomizer.getNumber()).body().as(Result.class);
             if (result.getMessage().equals("You lost this time")) {
-                long[] newWinNumbers = new long[6];
+                long[] newWinNumbers = new long[3];
                 for (int i = 1; i < winNumbers.length; i++) {
                     newWinNumbers[i - 1] = winNumbers[i];
                 }
@@ -142,7 +140,7 @@ public class Hack {
 
     private static long getFreeAccountId() {
         ApiEndpoints apiEndpoints = new ApiEndpoints();
-        long playerId = 10116;
+        long playerId = 10137;
         while (true) {
             try {
                 Account account = apiEndpoints.createPlayer(playerId).body().as(Account.class);
