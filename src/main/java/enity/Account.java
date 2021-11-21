@@ -1,12 +1,16 @@
 package enity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
 public class Account implements Serializable {
     private long id;
     private int money;
-//    private ZonedDateTime creationTime;
+    @JsonIgnore
+    private LocalDateTime deletionTime;
 
     public Account() {}
 
@@ -26,20 +30,19 @@ public class Account implements Serializable {
         this.money = money;
     }
 
-//    public ZonedDateTime getCreationTime() {
-//        return creationTime;
-//    }
-//
-//    public void setCreationTime(ZonedDateTime creationTime) {
-//        this.creationTime = creationTime;
-//    }
+    public LocalDateTime getDeletionTime() {
+        return deletionTime;
+    }
+
+    public void setDeletionTime(LocalDateTime deletionTime) {
+        this.deletionTime = deletionTime;
+    }
 
     @Override
     public String toString() {
         return "Account{" +
                 "id=" + id +
                 ", money=" + money +
-//                ", creationTime=" + creationTime +
                 '}';
     }
 }

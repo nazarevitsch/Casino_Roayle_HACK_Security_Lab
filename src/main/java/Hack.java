@@ -19,6 +19,7 @@ public class Hack {
             Result result = apiEndpoints.play(PlayMode.Lcg, playerId, 1, (int)(Math.random() * 20)).body().as(Result.class);
             winNumbers[i] = result.getRealNumber();
             lastAmountOfMoney = result.getAccount().getMoney();
+            System.out.println("Money: " + lastAmountOfMoney);
         }
         System.out.println("Money after collect data: " + lastAmountOfMoney);
 
@@ -67,6 +68,7 @@ public class Hack {
             }
             winNumbers[i] = result.getRealNumber();
             lastAmountOfMoney = result.getAccount().getMoney();
+            System.out.println("Money: " + lastAmountOfMoney);
         }
 
         System.out.println("Money after collect data: " + lastAmountOfMoney);
@@ -115,6 +117,7 @@ public class Hack {
             Result result = apiEndpoints.play(PlayMode.BetterMt, playerId, 1, (int)(Math.random() * 20)).body().as(Result.class);
             winNumbers[i] = result.getRealNumber();
             lastAmountOfMoney = result.getAccount().getMoney();
+            System.out.println("Money: " + lastAmountOfMoney);
         }
 
         System.out.println("Money after collect data: " + lastAmountOfMoney);
@@ -139,14 +142,16 @@ public class Hack {
 
     private static long getFreeAccountId() {
         ApiEndpoints apiEndpoints = new ApiEndpoints();
-        long playerId = 1;
+        long playerId = 10116;
         while (true) {
             try {
                 Account account = apiEndpoints.createPlayer(playerId).body().as(Account.class);
                 System.out.println("For this round we use account with ID: " + account.getId() + ", with money: " + account.getMoney());
                 return account.getId();
             } catch (Exception e) {
-                playerId++;            }
+                System.out.println("Account with ID: " + playerId + " is already in use!");
+                playerId++;
+            }
         }
     }
 }
