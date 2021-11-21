@@ -1,3 +1,5 @@
+package api;
+
 import enity.PlayMode;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
